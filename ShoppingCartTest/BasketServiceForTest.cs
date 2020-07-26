@@ -49,5 +49,15 @@ namespace ShoppingCartTest
             }
             return false;
         }
+
+        public ICollection<ShoppingCart> GetShoppingCartItems()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool AddProduct(AddProductRequest product)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

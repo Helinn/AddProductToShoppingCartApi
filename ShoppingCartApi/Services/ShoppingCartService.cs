@@ -64,5 +64,16 @@ namespace ShoppingCartApi.Services
         {
             return productRepository.GetAll();
         }
+
+        public ICollection<ShoppingCart> GetShoppingCartItems()
+        {
+            return shoppingCartRepository.GetAll();
+        }
+
+        public bool AddProduct(AddProductRequest product) {
+            var p = new Product() { Id = product.Id, Name = product.Name, Price = product.Price, AvailableQuantity = product.Quantity };
+            productRepository.Add(p);
+            return true;
+        }
     }
 }

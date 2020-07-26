@@ -9,5 +9,9 @@ namespace ShoppingCartApi.Services
         bool AddProductToShoppingCart(AddToShoppingCartRequest request);
 
         ICollection<Product> GetProducts();
+
+        ICollection<ShoppingCart> GetShoppingCartItems();
+
+        bool AddProduct(AddProductRequest product);
     }
 }

@@ -16,9 +16,9 @@ namespace ShoppingCartApi.Controllers
             BasketService = basketService;
         }
 
-        public ICollection<Product> GetAll()
+        public ICollection<ShoppingCart> GetAll()
         {
-            return BasketService.GetProducts();
+            return BasketService.GetShoppingCartItems();
         }
 
         [HttpPost]
