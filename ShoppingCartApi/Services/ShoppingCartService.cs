@@ -14,19 +14,24 @@ namespace ShoppingCartApi.Services
 
         private readonly IProductRepository productRepository;
 
-        public ShoppingCartService()
+        /*public ShoppingCartService()
         {
             productRepository = new ProductRepository();
             shoppingCartRepository = new ShoppingCartRepository();
-        }
-        public ShoppingCartService(IShoppingCartDatabaseSettings settings)
-        {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
+        }*/
+        // public ShoppingCartService(IShoppingCartDatabaseSettings settings)
+        // {
+        //     var client = new MongoClient(settings.ConnectionString);
+        //     var database = client.GetDatabase(settings.DatabaseName);
     
-            //_product = database.GetCollection<Product>(settings.ProductCollectionName);
-            productRepository = new ProductRepository(settings);
-            shoppingCartRepository = new ShoppingCartRepository(settings);
+        //     //_product = database.GetCollection<Product>(settings.ProductCollectionName);
+        //     productRepository = new ProductRepository(settings);
+        //     shoppingCartRepository = new ShoppingCartRepository(settings);
+        // }
+        public ShoppingCartService(IProductRepository productRepository, IShoppingCartRepository shoppingCartRepository)
+        {
+            this.productRepository = productRepository;
+            this.shoppingCartRepository = shoppingCartRepository;
         }
         
         public bool AddProductToShoppingCart(AddToShoppingCartRequest request)

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using Moq;
 using NUnit.Framework;
 using ShoppingCartApi.Controllers;
@@ -13,103 +15,92 @@ namespace ShoppingCartTest
     [TestFixture]
     public class ShoppingCartShould
     {
-        ShoppingCartController _controller;
-        IShoppingCartService _service;
-
+        private readonly IReadOnlyList<ShoppingCart> _ShoppingCart;
+        private readonly IReadOnlyList<Product> _Products;
         public ShoppingCartShould()
         {
-            _service = new BasketServiceForTest();
-            _controller = new ShoppingCartController(_service);
+
+            _ShoppingCart = new List<ShoppingCart>(){
+                new ShoppingCart() { Id = "p1" , ProductId = "1", Amount = 2},
+                new ShoppingCart() { Id = "p2" , ProductId = "2", Amount = 1},
+                new ShoppingCart() { Id = "p3" , ProductId = "3", Amount = 3},
+            };
+
+            _Products = new List<Product>()
+            {
+                new Product() { Id = "1", Name = "Rose", Price = 5.00, AvailableQuantity = 5 },
+                new Product() { Id = "2", Name = "Terrarium", Price = 4.00, AvailableQuantity = 10  },
+                new Product() { Id = "3", Name = "Orchid", Price = 12.00, AvailableQuantity = 8  }
+            };
         }
         [Test]
-        public void GetAll_Should_Return_Product_Count()
+        public void AddProductToShoppingCart_Should_Return_True_If_Product_Available_In_Stock()
         {
-            // Act
-            var okResult = _controller.GetAll();
-
-            // Assert
-            Assert.AreEqual(3,okResult.Count);
-        }
-
-        // [Test]
-        //  public void AddItemToBasket_ReturnsBadRequest_If_Request_Not_Valid()
-        // {
-        //     // Arrange
-        //     var request = new AddToShoppingCartRequest{
-        //         ProductId = "",
-        //         Amount = 0
-        //     };
-        //     // Act
-        //     var response = _service.AddProductToShoppingCart(request);
-
-
-        //     // Assert
-        //     Assert.IsInstanceOf<BadRequestObjectResult>(badResponse);
-        // }
-
-        [Test]
-        public void AddItemToShoppingCart_ReturnsItem_If_Product_Could_Add()
-        {
-            // Arrange 
+            //Act
             var request = new AddToShoppingCartRequest{
-                ProductId = "1",
+                ProductId = ObjectId.GenerateNewId().ToString(),
                 Amount = 2
             };
+            var shoppingCartRepository = new Mock<IShoppingCartRepository>();
+            var productRepositoryMock = new Mock<IProductRepository>();
+            var service = new ShoppingCartService(productRepositoryMock.Object, shoppingCartRepository.Object );
+           
+            productRepositoryMock.Setup(x => x.GetByProductId(request.ProductId)).Returns(new Product() {
+                                                                    Id = request.ProductId,
+                                                                    Name = "Terrarium",
+                                                                    Price = 4.00, 
+                                                                    AvailableQuantity = 10  
+                                                                    });
             // Act
-            var response = _service.AddProductToShoppingCart(request);
+            var response = service.AddProductToShoppingCart(request);
 
             // Assert
-            Assert.IsNotNull(response);
+            Assert.IsTrue(Convert.ToBoolean(response));
         }
 
         [Test]
-        public void AddItemToShoppingCart_ReturnsItem_If_There_Is_No_Product()
+        public void AddProductToShoppingCart_Should_Return_False_If_Product_Not_Available_In_Stock()
         {
-            // Arrange
+            //Act
             var request = new AddToShoppingCartRequest{
-                ProductId = "6",
+                ProductId = ObjectId.GenerateNewId().ToString(),
                 Amount = 2
             };
+            var shoppingCartRepository = new Mock<IShoppingCartRepository>();
+            var productRepositoryMock = new Mock<IProductRepository>();
+            var service = new ShoppingCartService(productRepositoryMock.Object, shoppingCartRepository.Object );
             // Act
-            var response = _service.AddProductToShoppingCart(request);
+            productRepositoryMock.Setup(x => x.GetByProductId(request.ProductId)).Returns(new Product() {
+                                                                    Id = request.ProductId,
+                                                                    Name = "Terrarium",
+                                                                    Price = 4.00, 
+                                                                    AvailableQuantity = 0  
+                                                                    });
+            
+            
+            var response = service.AddProductToShoppingCart(request);
 
             // Assert
             Assert.IsFalse(Convert.ToBoolean(response));
         }
 
         [Test]
-        public void AddItemToShoppingCart_ReturnsTrue_If_Product_In_Stock()
+        public void AddProductToShoppingCart_Should_Return_False_If_Product_Is_Null()
         {
-            // Arrange
+            //Act
             var request = new AddToShoppingCartRequest{
-                ProductId = "1",
+                ProductId = ObjectId.GenerateNewId().ToString(),
                 Amount = 2
             };
-            var shoppingCartMock = new Mock<IShoppingCartRepository>();
-            var productMock = new Mock<IProductRepository>();
-            productMock.Setup(productMock => productMock.GetByProductId("2")).Returns(new Product() { Id = "2", Name = "Terrarium", Price = 4.00, AvailableQuantity = 10  });
-            //mock.Setup(add => add.AddProductToShoppingCart(request)).Returns(false);
+            var shoppingCartRepository = new Mock<IShoppingCartRepository>();
+            var productRepositoryMock = new Mock<IProductRepository>();
+            var service = new ShoppingCartService(productRepositoryMock.Object, shoppingCartRepository.Object );
+           
             // Act
-            var response = _service.AddProductToShoppingCart(request);
+            var response = service.AddProductToShoppingCart(request);
 
             // Assert
-            Assert.IsTrue(Convert.ToBoolean(response));
+            Assert.IsFalse(Convert.ToBoolean(response));
         }
-
-                [Test]
-        public void AddItemToShoppingCart_ReturnsFalse_If_Product_In_Stock()
-        {
-            // Arrange
-            var request = new AddToShoppingCartRequest{
-                ProductId = "1",
-                Amount = 2
-            };
-            // Act
-            var response = _service.AddProductToShoppingCart(request);
-
-            // Assert
-            Assert.IsTrue(Convert.ToBoolean(response));
-        }
-        
     }
 }

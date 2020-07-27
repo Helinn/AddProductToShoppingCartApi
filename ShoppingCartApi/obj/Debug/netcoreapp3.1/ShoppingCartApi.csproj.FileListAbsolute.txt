@@ -1,8 +1,3 @@
-/Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/ShoppingCartApi.csprojAssemblyReference.cache
-/Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/ShoppingCartApi.AssemblyInfoInputs.cache
-/Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/ShoppingCartApi.AssemblyInfo.cs
-/Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/ShoppingCartApi.csproj.CoreCompileInputs.cache
-/Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/ShoppingCartApi.MvcApplicationPartsAssemblyInfo.cache
 /Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/bin/Debug/netcoreapp3.1/appsettings.Development.json
 /Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/bin/Debug/netcoreapp3.1/appsettings.json
 /Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/bin/Debug/netcoreapp3.1/Properties/launchSettings.json
@@ -17,6 +12,11 @@
 /Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/bin/Debug/netcoreapp3.1/MongoDB.Driver.Core.dll
 /Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/bin/Debug/netcoreapp3.1/MongoDB.Libmongocrypt.dll
 /Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/bin/Debug/netcoreapp3.1/SharpCompress.dll
+/Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/ShoppingCartApi.csprojAssemblyReference.cache
+/Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/ShoppingCartApi.AssemblyInfoInputs.cache
+/Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/ShoppingCartApi.AssemblyInfo.cs
+/Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/ShoppingCartApi.csproj.CoreCompileInputs.cache
+/Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/ShoppingCartApi.MvcApplicationPartsAssemblyInfo.cache
 /Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/ShoppingCartApi.RazorTargetAssemblyInfo.cache
 /Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/ShoppingCartApi.csproj.CopyComplete
 /Users/helinyildirim/Desktop/webapi/ShoppingCartApi/ShoppingCartApi/obj/Debug/netcoreapp3.1/staticwebassets/ShoppingCartApi.StaticWebAssets.Manifest.cache

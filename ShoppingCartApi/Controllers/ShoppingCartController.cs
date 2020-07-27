@@ -9,16 +9,16 @@ namespace ShoppingCartApi.Controllers
     [Route("api/[controller]")]
     public class ShoppingCartController : ControllerBase
     {
-        public IShoppingCartService BasketService { get; set; }
+        public IShoppingCartService ShoppingCartService { get; set; }
 
         public ShoppingCartController(IShoppingCartService basketService)
         {
-            BasketService = basketService;
+            ShoppingCartService = basketService;
         }
 
         public ICollection<ShoppingCart> GetAll()
         {
-            return BasketService.GetShoppingCartItems();
+            return ShoppingCartService.GetShoppingCartItems();
         }
 
         [HttpPost]
@@ -32,8 +32,14 @@ namespace ShoppingCartApi.Controllers
                 return BadRequest("product id should be greater than zero!");
             }
             
-            var res = BasketService.AddProductToShoppingCart(request);
+            var res = ShoppingCartService.AddProductToShoppingCart(request);
             return Ok(res);
+        }
+
+        [HttpGet("products")]
+        public ICollection<Product> GetProducts()
+        {
+            return ShoppingCartService.GetProducts();
         }
     }
 }

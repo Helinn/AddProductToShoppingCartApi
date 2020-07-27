@@ -8,7 +8,5 @@ namespace ShoppingCartApi.Repositories
         void Add(Product item);
         Product GetByProductId(string productId);
         ICollection<Product> GetAll();
-        Product Delete(string productId);
-        void Update(Product product);
     }
 }
