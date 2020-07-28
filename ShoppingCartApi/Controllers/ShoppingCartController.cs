@@ -41,5 +41,11 @@ namespace ShoppingCartApi.Controllers
         {
             return ShoppingCartService.GetProducts();
         }
+
+        [HttpPost("addproduct")]
+        public IActionResult AddProduct([FromBody] AddProductRequest productRequest){
+            var res = ShoppingCartService.AddProduct(productRequest);
+            return Ok(res);
+        }
     }
 }
