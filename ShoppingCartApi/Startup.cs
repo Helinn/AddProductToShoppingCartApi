@@ -26,14 +26,11 @@ namespace ShoppingCartApi
             services.Configure<ShoppingCartDatabaseSettings>(Configuration.GetSection(nameof(ShoppingCartDatabaseSettings)));
 
             services.AddSingleton<IShoppingCartDatabaseSettings>(sp => sp.GetRequiredService<IOptions<ShoppingCartDatabaseSettings>>().Value);
-            //services.AddScoped(serviceType: typeof(IProductRepository<>), typeof(ProductRepository<>));
-
 
             services.AddSingleton<IProductRepository, ProductRepository>();
             services.AddTransient<IShoppingCartRepository, ShoppingCartRepository>();
             services.AddScoped<IShoppingCartService, ShoppingCartService>();
 
-            //services.AddTransient(s => new ShoppingCartRepository(new MongoDBContext(connectionString,databaseName)));
 
             services.AddControllers(); 
         }

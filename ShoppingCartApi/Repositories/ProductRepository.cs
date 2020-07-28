@@ -12,13 +12,6 @@ namespace ShoppingCartApi.Repositories
         public ProductRepository(IOptions<ShoppingCartDatabaseSettings> options) : base(options)
         {
         }
-        // public ProductRepository(IShoppingCartDatabaseSettings settings)
-        // {
-        //     var client = new MongoClient(settings.ConnectionString);
-        //     var database = client.GetDatabase(settings.DatabaseName);
-
-        //     _product = database.GetCollection<Product>(settings.ProductCollectionName);
-        // }
 
         public void Add(Product item)
         {
